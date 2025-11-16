@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Hosting;
 
 namespace E_Commerce__API
 {
@@ -7,26 +8,13 @@ namespace E_Commerce__API
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
+            var startup = new Startup(builder.Configuration);
 
-            builder.Services.AddControllers();
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
+            startup.ConfigureServices(builder.Services);
 
             var app = builder.Build();
 
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
-
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
+            startup.Configure(app, app.Environment);
 
             app.Run();
         }
