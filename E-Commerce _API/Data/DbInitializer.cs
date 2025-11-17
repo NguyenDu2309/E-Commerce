@@ -11,6 +11,7 @@ namespace E_Commerce__API.Data
             {
                 new Product
                 {
+                    Id = 1,
                     Name = "Product 1",
                     Description = "Description for product 1",
                     Price = 10.99M,
@@ -21,6 +22,7 @@ namespace E_Commerce__API.Data
                 },
                 new Product
                 {
+                    Id = 2,
                     Name = "Product 2",
                     Description = "Description for product 2",
                     Price = 20.99M,
@@ -31,6 +33,7 @@ namespace E_Commerce__API.Data
                 },
                 new Product
                 {
+                    Id = 3,
                     Name = "Product 3",
                     Description = "Description for product 3",
                     Price = 15.50M,
@@ -41,6 +44,7 @@ namespace E_Commerce__API.Data
                 },
                 new Product
                 {
+                    Id = 4,
                     Name = "Product 4",
                     Description = "Description for product 4",
                     Price = 5.75M,
@@ -51,6 +55,7 @@ namespace E_Commerce__API.Data
                 },
                 new Product
                 {
+                    Id = 5,
                     Name = "Product 5",
                     Description = "Description for product 5",
                     Price = 12.00M,
@@ -61,6 +66,7 @@ namespace E_Commerce__API.Data
                 },
                 new Product
                 {
+                    Id = 6,
                     Name = "Product 6",
                     Description = "Description for product 6",
                     Price = 30.00M,
@@ -71,6 +77,7 @@ namespace E_Commerce__API.Data
                 },
                 new Product
                 {
+                    Id = 7,
                     Name = "Product 7",
                     Description = "Description for product 7",
                     Price = 25.99M,
