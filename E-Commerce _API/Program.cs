@@ -1,4 +1,6 @@
+using E_Commerce__API.Data;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 namespace E_Commerce__API
 {
@@ -6,17 +8,27 @@ namespace E_Commerce__API
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
-
-            var startup = new Startup(builder.Configuration);
-
-            startup.ConfigureServices(builder.Services);
-
-            var app = builder.Build();
-
-            startup.Configure(app, app.Environment);
-
-            app.Run();
+            var host = CreateHostBuilder(args).Build();
+            var scope = host.Services.CreateScope();
+            var context = scope.ServiceProvider.GetRequiredService<Data.StoreContext>();
+            var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+            try
+            {
+                context.Database.Migrate();
+                DbInitializer.Initialize(context);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "An error occurred during migration");
+            }
+            host.Run();
         }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }
