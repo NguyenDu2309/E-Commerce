@@ -10,7 +10,7 @@ namespace E_Commerce__API
         {
             var host = CreateHostBuilder(args).Build();
             var scope = host.Services.CreateScope();
-            var context = scope.ServiceProvider.GetRequiredService<Data.StoreContext>();
+            var context = scope.ServiceProvider.GetRequiredService<StoreContext>();
             var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
             try
             {
