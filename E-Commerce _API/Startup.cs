@@ -1,4 +1,5 @@
 ﻿using E_Commerce__API.Data;
+using E_Commerce__API.Middleware;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -35,9 +36,9 @@ namespace E_Commerce__API
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionMiddleware>();
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
@@ -50,7 +51,7 @@ namespace E_Commerce__API
 
             app.UseRouting();
             app.UseCors(opt => { 
-                opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+                opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000", "http://localhost:5173");
             });
 
             app.UseAuthorization();
