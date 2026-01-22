@@ -10,5 +10,7 @@ namespace E_Commerce__API.Data
 
         }
         public DbSet<Product> Products { get; set; }
+
+        public DbSet<Basket> Baskets { get; set; }
     }
 }
