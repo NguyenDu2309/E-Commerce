@@ -2,7 +2,7 @@
 
 namespace E_Commerce__API.Entities
 {
-    [Table("BaskerItems")]
+    [Table("BasketItems")]
     public class BasketItem
     {
         public int Id { get; set; }

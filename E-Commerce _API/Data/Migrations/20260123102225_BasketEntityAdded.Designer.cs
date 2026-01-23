@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce__API.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20260122154450_BasketEntityAdded")]
+    [Migration("20260123102225_BasketEntityAdded")]
     partial class BasketEntityAdded
     {
         /// <inheritdoc />
@@ -55,7 +55,7 @@ namespace E_Commerce__API.Data.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("BaskerItems");
+                    b.ToTable("BasketItems");
                 });
 
             modelBuilder.Entity("E_Commerce__API.Entities.Product", b =>
@@ -80,8 +80,8 @@ namespace E_Commerce__API.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("TEXT");
+                    b.Property<long>("Price")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("QuantityInStock")
                         .HasColumnType("INTEGER");

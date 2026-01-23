@@ -10,6 +10,14 @@ namespace E_Commerce__API.Data.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterColumn<long>(
+                name: "Price",
+                table: "Products",
+                type: "INTEGER",
+                nullable: false,
+                oldClrType: typeof(decimal),
+                oldType: "TEXT");
+
             migrationBuilder.CreateTable(
                 name: "Baskets",
                 columns: table => new
@@ -24,7 +32,7 @@ namespace E_Commerce__API.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "BaskerItems",
+                name: "BasketItems",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -35,15 +43,15 @@ namespace E_Commerce__API.Data.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_BaskerItems", x => x.Id);
+                    table.PrimaryKey("PK_BasketItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BaskerItems_Baskets_BasketId",
+                        name: "FK_BasketItems_Baskets_BasketId",
                         column: x => x.BasketId,
                         principalTable: "Baskets",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_BaskerItems_Products_ProductId",
+                        name: "FK_BasketItems_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -51,13 +59,13 @@ namespace E_Commerce__API.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_BaskerItems_BasketId",
-                table: "BaskerItems",
+                name: "IX_BasketItems_BasketId",
+                table: "BasketItems",
                 column: "BasketId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BaskerItems_ProductId",
-                table: "BaskerItems",
+                name: "IX_BasketItems_ProductId",
+                table: "BasketItems",
                 column: "ProductId");
         }
 
@@ -65,10 +73,18 @@ namespace E_Commerce__API.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BaskerItems");
+                name: "BasketItems");
 
             migrationBuilder.DropTable(
                 name: "Baskets");
+
+            migrationBuilder.AlterColumn<decimal>(
+                name: "Price",
+                table: "Products",
+                type: "TEXT",
+                nullable: false,
+                oldClrType: typeof(long),
+                oldType: "INTEGER");
         }
     }
 }
